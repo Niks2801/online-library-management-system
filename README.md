@@ -19,7 +19,7 @@ Getting Started
 
 Clone the repository:
 Bash
-git clone https://github.com/your_username/your_repo_name.git
+git clone https://github.com/Niks2801/online-library-management-system
 Use code with caution.
 
 Install dependencies:
