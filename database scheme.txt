@@ -1,0 +1,56 @@
+SQL Queries for Library Management System
+Note: These are basic SQL queries to demonstrate the operations. You might need to adjust them based on your specific database system and table structure.
+
+1. Add a New Book
+SQL
+INSERT INTO books (title, author, ISBN, genre, publication_year, available_copies)
+VALUES ('The Lord of the Rings', 'J.R.R. Tolkien', '0-547-99501-3', 'Fantasy', 1954, 5);
+
+
+2. Search for a Book by Title
+SQL
+SELECT * FROM books WHERE title LIKE '%Lord of the Rings%';
+
+
+3. Issue a Book to a Member
+SQL
+INSERT INTO transactions (book_id, member_id, issue_date, due_date)
+VALUES (1, 101, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 14 DAY));
+
+UPDATE books SET available_copies = available_copies - 1 WHERE book_id = 1;
+
+
+4. Return a Book
+SQL
+UPDATE transactions SET return_date = CURDATE() WHERE transaction_id = 1;
+
+UPDATE books SET available_copies = available_copies + 1 WHERE book_id = 1;
+
+5. Get a List of Overdue Books
+SQL
+SELECT * FROM transactions WHERE due_date < CURDATE() AND return_date IS NULL;
+
+
+6. Get a List of Books Borrowed by a Member
+SQL
+SELECT b.title, t.issue_date, t.due_date
+FROM transactions t
+JOIN books b ON t.book_id = b.book_id
+WHERE t.member_id = 101;
+
+7. Get a List of Members Who Have Not Returned Books
+SQL
+SELECT m.name, b.title, t.due_date
+FROM transactions t
+JOIN books b ON t.book_id = b.book_id
+JOIN members m ON t.member_id = m.member_id
+WHERE t.return_date IS NULL;
+
+
+Note:
+
+Replace placeholders like 1, 101, and dates with actual values.
+Adjust the queries based on your specific database system's syntax (e.g., MySQL, PostgreSQL, SQL Server).
+Consider using parameterized queries to prevent SQL injection attacks.
+Implement error handling and validation to ensure data integrity.
+By combining these basic SQL queries with more complex logic and data structures, you can build a robust library management system.
