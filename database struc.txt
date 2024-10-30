@@ -46,11 +46,3 @@ JOIN books b ON t.book_id = b.book_id
 JOIN members m ON t.member_id = m.member_id
 WHERE t.return_date IS NULL;
 
-
-Note:
-
-Replace placeholders like 1, 101, and dates with actual values.
-Adjust the queries based on your specific database system's syntax (e.g., MySQL, PostgreSQL, SQL Server).
-Consider using parameterized queries to prevent SQL injection attacks.
-Implement error handling and validation to ensure data integrity.
-By combining these basic SQL queries with more complex logic and data structures, you can build a robust library management system.
